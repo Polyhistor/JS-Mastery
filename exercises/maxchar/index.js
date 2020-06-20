@@ -6,24 +6,20 @@
 // maxChar("apple 1231111") === "1"
 
 function maxChar(str) {
-    let obj = {}
-    let max = 0
-    let maxChar = ''
+  let charMap = {};
+  let biggestChar = 0;
 
-    // let's get through and see how many of which we have, remember we use for/of for arrays
-    for (let char of str) {
-        obj[char] === undefined ? obj[char] = 1 : obj[char]++
+  for (const char of str) {
+    charMap[char] ? (charMap[char] = charMap[char] + 1) : (charMap[char] = +1);
+  }
+
+  for (const char in charMap) {
+    if (charMap[char] > biggestChar) {
+      biggestChar = char;
     }
+  }
 
-    // now let's traverse the object and try to count, remember we use for/in for objects
-    for (let char in obj) {
-        if (obj[char] > max) {
-            max = obj[char] 
-            maxChar = char
-        }
-    }
-
-    return maxChar
+  return biggestChar;
 }
 
 module.exports = maxChar;
